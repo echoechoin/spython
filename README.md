@@ -1,1 +1,1 @@
-# readme@(./doc/readme.md)[./doc/readme.md]
+# readme@[./doc/readme.md](./doc/readme.md)
