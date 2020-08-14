@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>csdn_export_md</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="stackedit" style="background-color:black;color:white">
+  <div class="stackedit__html"><h1><a id="RAYENCRY_0"></a>RAYENCRY</h1>
+<p><code>rayencry</code>使用AES算法对指定目录中的Python源码加密。</p>
+<h2><a id="_4"></a>内容</h2>
+<ul>
+<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9Python%E6%BA%90%E7%A0%81">修改Python源码（<code>仅针对Python-2.7.15</code>）</a></li>
+<li><a href="#Contributor">Contributor</a></li>
+<li><a href="#Reference">Reference</a></li>
+</ul>
+<h2><a id="_13"></a>背景</h2>
+<p>由于Python为解释形语言，源码直接暴漏在生产环境中，为了防止Python源码泄露造成不必要安全问题，可以改造Python解释器用于执行加密后的python代码。</p>
+<h2><a id="_17"></a>安装</h2>
+<h3><a id="1__19"></a>1. 目录结构</h3>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../doc">doc</a></td>
+<td>文档</td>
+</tr>
+<tr>
+<td><a href="../src">src</a></td>
+<td>源码</td>
+</tr>
+<tr>
+<td><a href="../configure.json">configure.json</a></td>
+<td>配置文件例子</td>
+</tr>
+<tr>
+<td><a href="../install.sh">install.sh</a></td>
+<td>安装脚本</td>
+</tr>
+<tr>
+<td><a href="../uninstall.sh">uninstall.sh</a></td>
+<td>卸载脚本</td>
+</tr>
+<tr>
+<td><a href="../Makefile">Makefile</a></td>
+<td>Makefile</td>
+</tr>
+</tbody>
+</table><h3><a id="2__30"></a>2. 编译依赖</h3>
+<p>rayencry依赖<code>libssl</code>库，使用如下两种方法安装<code>libssl</code>均可:</p>
+<ul>
+<li><code>apt install libssl-dev</code></li>
+<li>源码编译安装libssl</li>
+</ul>
+<h3><a id="3__36"></a>3. 编译安装</h3>
+<ul>
+<li>修改<code>decrypt_file.c</code>中的AES密匙和AES的cbc向量。注意：均为128位。</li>
+<li>使用<code>sudo make</code>编译</li>
+<li>使用<code>sudo make install</code>或者运行脚本<code>install.sh</code>安装</li>
+<li>使用<code>sudo make uninstall</code>或者运行脚本<code>uninstall.sh</code>卸载</li>
+<li>使用<code>sudo make clean</code>清除编译结果</li>
+</ul>
+<h2><a id="_45"></a>使用说明</h2>
+<h3><a id="1_configurejson_47"></a>1. 配置<code>configure.json</code>文件：</h3>
+<pre><code class="prism language-json"><span class="token punctuation">{</span>
+    <span class="token string">"select"</span><span class="token punctuation">:</span><span class="token string">"/home/src"</span><span class="token punctuation">,</span>
+    <span class="token string">"except"</span><span class="token punctuation">:</span><span class="token punctuation">[</span>
+        <span class="token string">"except_file.py"</span><span class="token punctuation">,</span>
+        <span class="token string">"except_directory"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"archive"</span><span class="token punctuation">:</span><span class="token string">"/home/src_en"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>必要性</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>select</code></td>
+<td>必选</td>
+<td><code>string</code></td>
+<td>需要加密的源码<code>目录</code>（只能是目录）。请使用绝对地址。</td>
+</tr>
+<tr>
+<td><code>except</code></td>
+<td>可选</td>
+<td><code>array</code></td>
+<td>需要在加密文件中排除的<code>目录</code>或者<code>路径</code>。请使用相对地址。</td>
+</tr>
+<tr>
+<td><code>archive</code></td>
+<td>必选</td>
+<td><code>string</code></td>
+<td>解密<code>目录</code>名字。请使用绝对地址。</td>
+</tr>
+</tbody>
+</table><h3><a id="2_rayencry_65"></a>2. 使用rayencry加密源码目录</h3>
+<pre><code class="prism language-shell">rayencry <span class="token operator">&lt;</span>config file<span class="token operator">&gt;</span>
+</code></pre>
+<h2><a id="PythonPython2715_71"></a>修改Python源码（<code>仅针对Python-2.7.15</code>）</h2>
+<p>下载Python-2.7.15解释器的源码并对其进行如下的修改以运行加密的Python源码：</p>
+<blockquote>
+<p>推荐使用<a href="https://npm.taobao.org/mirrors/python/">aliyun镜像</a>下载python源码</p>
+</blockquote>
+<h3><a id="1__75"></a>1. 添加文件</h3>
+<p>复制文件<code>./src/Python/decrypt_file_acs.c</code>到<code>Python-2.7.15/Python</code>中<br>
+复制文件<code>./src/Include/decrypt——fileacs.h</code>到<code>Python-2.7.15/Python</code>中</p>
+<h3><a id="2_Python_79"></a>2. 添加解密函数到Python源码中</h3>
+<pre><code class="prism language-diff">
+Module/main.c
+------------
+
+...
+- 609            if ((fp = fopen(filename, "r")) == NULL) {
++ 609            if ((fp = d_open(filename, "r")) == NULL) {
+...
+
+Python/import.c
+------------
+
+...
+-1579            fp = fopen(buf, filemode);
++1579            fp = d_open(buf, filemode);
+...
+
+</code></pre>
+<h3><a id="3_pyc_100"></a>3. 禁止生成<code>.pyc</code>文件</h3>
+<p>由于开发者可以通过<code>.pyc</code>反编译出python源代码，所以需要禁用生成<code>.pyc</code>文件</p>
+<pre><code class="prism language-diff">Module/main.c
+------------
+
+...
++ 445 Py_DontWriteBytecodeFlag++;
+...
+
+Python/pythonrun.c
+------------
+
+...
+- 194 if ((p = Py_GETENV("PYTHONDONTWRITEBYTECODE")) &amp;&amp; *p != '\0')
+- 195     Py_DontWriteBytecodeFlag = add_flag(Py_DontWriteBytecodeFlag, p);
+...
+
+</code></pre>
+<h3><a id="4__121"></a>4. 禁止访问字节码</h3>
+<pre><code class="prism language-diff">./Objects/codeobject.c
+------------
+
+...
+- 205     {"co_code",         T_OBJECT,       OFF(co_code),           READONLY},
+...
+
+</code></pre>
+<h3><a id="5_Makefileinpre_133"></a>5. 修改Makefile.in.pre</h3>
+<p>Makefile需要链接<code>libssl</code>库，生成<code>decrypt_source_file.o</code></p>
+<pre><code class="prism language-diff">./Makefile.pre.in
+------------
+
+... 
+- 188 SYSLIBS=	$(LIBM) $(LIBC)
++ 188 SYSLIBS=	$(LIBM) $(LIBC) -lcrypto -lssl
+... 
+295 ##########################################################################
+296 PYTHON_OBJS=	\
++ 297	Python/decrypt_source_file.o \
+298		Python/_warnings.o \
+299		Python/Python-ast.o \
+... 
+752 ############################################################################
+753 # Header files
+754
+755 PYTHON_HEADERS= \
++ 756 		Include/decrypt_source_file.h \
+757 		Include/Python-ast.h \
+758 		Include/Python.h \
+759 		Include/abstract.h \
+...
+
+</code></pre>
+<h3><a id="6_Python_163"></a>6. 编译安装Python</h3>
+<pre><code>sudo ./configure --prefix=$PREFIX
+sudo make
+sudo make install
+</code></pre>
+<h2><a id="Contributor_172"></a>Contributor</h2>
+<p>万炳江<a href="https://github.com/echoechoin">@echoechoin</a></p>
+<blockquote>
+<p>Email: admin@study644.top<br>
+QQ: 614699596</p>
+</blockquote>
+<h2><a id="Reference_178"></a>Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/54296517">[1] 如何保护你的 Python 代码</a><br>
+<a href="https://docs.python.org/2.7/">[2] Python 2.7.18 documentation</a></p>
+</div>
+</body>
+
+</html>
