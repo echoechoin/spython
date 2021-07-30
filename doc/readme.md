@@ -174,8 +174,7 @@ sudo make install
 
 ## Contributor
 
-万炳江[@echoechoin](https://github.com/echoechoin)  
-> Email: admin@study644.top  
+[@echoechoin](https://github.com/echoechoin)   
 > QQ: 614699596
 
 ## Reference
