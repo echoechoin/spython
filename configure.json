@@ -1,8 +1,0 @@
-{
-    "select":"/lib/python2.7",
-    "except":[
-        "encry.py",
-        "progress_webray"
-    ],
-    "archive":"/home/decrypt_file_acs/src.en",
-}

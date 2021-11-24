@@ -11,13 +11,13 @@
 
 /**
  * @description: decrypt_file.c使用对称加密算法AES加密文件，密钥长度为128bit 
- * @dependencies: openssl
+ * @dependencies: libssl
  */
 
 #define KEY  "8cc72b05705d5c46f412af8cbed55aad"
 #define IV   "667b02a85c61c786def4521b060265e8"
 #define _NO_DECRYPT_FILE_OUTPUT // 是否需要输出解密后的文件
-#define HEADINFO "webray-encrypted-python-source-file"
+#define HEADINFO "encrypted-python-source-file-header"
 
 static unsigned char* str2hex (char *str);
 static void encrypt_buf (char *raw_buf, char **encrpy_buf, int len);
@@ -26,35 +26,7 @@ int encrypt_file (char *src, char *dst);
 int decrypt_open (char *filename);
 int decrypt_file (char *src, char *dst);
 
-/**
- * @description: main函数 
- */
-/*int main (int argc, char *argv[])
-{
-    char buf[64];
-    int size;
-    strcpy(buf, argv[1]);
-    strcat(buf,".en");
-    if (encrypt_file ( argv[1], buf) == -1) {
-        perror ("encrypt error");
-    }
 
-    int fd = decrypt_open (buf);
-    if (fd == -1){
-        printf ("error\n");
-        exit (-1);
-    }
-    puts ("-----------------------------------------------");
-    while (size = read(fd, buf, 64)) {
-        for (int i = 0; i < size; i++){
-            printf ("%c", buf[i]);
-        }
-    }
-    puts ("\n-----------------------------------------------");
-    close(fd);
-    return 0;
-}
-*/
 /**
  * @description: 加密文件
  * @param src: 未加密源文件的名字
