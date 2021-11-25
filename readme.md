@@ -1,6 +1,6 @@
 # SPYTHON
 
-![alt](./src/demo.png]
+![alt](./src/demo.png)
 
 ## 一、修改Python源码（`仅针对Python-2.7.15`）
 下载Python-2.7.15解释器的源码并对其进行如下的修改以运行加密的Python源码：
@@ -168,7 +168,7 @@ index 9297e7f..4e11afe 100644
 
 ### 6. 编译安装Python-2.7.15
 
-```
+```bash
 tar zxvf Python-2.7.15.tgz
 cd Python-2.7.15
 patch -p1 < ../enc.patch # 也可以自己修改，或者用我修改好的
