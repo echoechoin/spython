@@ -1,5 +1,7 @@
 # SPYTHON
 
+![alt](./src/demo.png)]
+
 ## 一、修改Python源码（`仅针对Python-2.7.15`）
 下载Python-2.7.15解释器的源码并对其进行如下的修改以运行加密的Python源码：
 > 推荐使用[aliyun镜像](https://npm.taobao.org/mirrors/python/)下载python源码
@@ -127,7 +129,7 @@ index a66aa69..33bc4eb 100644
      {"co_varnames",     T_OBJECT,       OFF(co_varnames),       READONLY},
 ```
 
-### 5. 修改Makefile.pre.in
+### 5. 修改`Makefile.pre.in`文件
 
 Makefile需要链接`libssl`库，生成`decrypt_source_file.o`
 
@@ -170,9 +172,18 @@ index 9297e7f..4e11afe 100644
 tar zxvf Python-2.7.15.tgz
 cd Python-2.7.15
 patch -p1 < ../enc.patch # 也可以自己修改，或者用我修改好的
-sudo ./configure --prefix=$PREFIX
-sudo make
+./configure --prefix=$PREFIX
+make
 sudo make install
+
+```
+
+### 7. 编译安装spython-enc
+
+修改目录到本仓库根目录
+
+```bash
+make
 ```
 
 ## 二、Contributor
