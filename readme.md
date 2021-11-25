@@ -1,6 +1,6 @@
 # SPYTHON
 
-![alt](./src/demo.png]
+![alt](./src/demo.png)
 
 ## 一、修改Python源码（`仅针对Python-2.7.15`）
 下载Python-2.7.15解释器的源码并对其进行如下的修改以运行加密的Python源码：
