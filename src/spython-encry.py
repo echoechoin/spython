@@ -13,6 +13,6 @@ else:
     exit(-1)
 
 
-libdecfile = CDLL("libdecfile.so")
+libdecfile = CDLL("libencfile.so")
 libdecfile.encrypt_file(need_to_enc_file_name, after_enc_file_name)
 os.system("chmod 0755 %s"%after_enc_file_name)
