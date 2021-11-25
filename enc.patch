@@ -26,7 +26,7 @@ index 0000000..71de9e0
 +
 +#define KEY  "8cc72b05705d5c46f412af8cbed55aad"
 +#define IV   "667b02a85c61c786def4521b060265e8"
-+#define HEADINFO "webray-encrypted-python-source-file"
++#define HEADINFO "encrypted-python-source-file-header"
 +#define _NO_DECRYPT_FILE_OUTPUT // 是否需要输出解密后的文件
 +
 +// 可以使用的函数
