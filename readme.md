@@ -168,7 +168,7 @@ index 9297e7f..4e11afe 100644
 
 ### 6. 编译安装Python-2.7.15
 
-```
+```bash
 tar zxvf Python-2.7.15.tgz
 cd Python-2.7.15
 patch -p1 < ../enc.patch # 也可以自己修改，或者用我修改好的
