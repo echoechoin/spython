@@ -7,7 +7,7 @@ all:./src/encrypt_file.c
 install:
 	@echo "info: installing..."
 	@install -c ./libencfile.so /lib
-	@install -m 777 ./spython-enc.py /bin/spython-enc
+	@install -m 777 ./spython-enc /bin/spython-enc
 	@echo "info: success!"
 
 uninstall:
