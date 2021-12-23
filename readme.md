@@ -4,11 +4,11 @@
 
 ## Python2.7.15
 
-[readme.md](./Python-2.7.15/readme.md)
+[readme.md](./spython-2.7.15/readme.md)
 
 ## Python3.7.3
 
-[readme.md](./Python-3.7.3/readme.md)
+[readme.md](./spython-3.7.3/readme.md)
 
 ## Contributor
 
