@@ -170,8 +170,9 @@ index 9297e7f..4e11afe 100644
 ### 6. 编译安装Python-2.7.15
 
 ```bash
-tar path/to/spython/spython-2.7.15/Python-2.7.15.tgz
-cd path/to/spython/spython-2.7.15/Python-2.7.15
+cd path/to/spython/spython-2.7.15/
+tar zxvf Python-2.7.15.tgz
+cd Python-2.7.15
 ./configure --prefix=$PREFIX
 make
 sudo make install

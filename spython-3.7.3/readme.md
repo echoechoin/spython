@@ -137,8 +137,9 @@ index 2d2e11f..01de091 100644
 ### 6. 编译安装Python-3.7.3
 
 ```bash
-tar path/to/spython/spython-3.7.3/Python-3.7.3.tgz
-cd path/to/spython/spython-3.7.3/Python-3.7.3
+cd path/to/spython/spython-3.7.3/
+tar zxvf Python-3.7.3.tgz
+cd Python-3.7.3
 ./configure --prefix=$PREFIX
 make
 sudo make install
