@@ -11,6 +11,9 @@ static int decrypt_open (char *filename);
  */
 FILE* d_open(char *filename, const char *modes)
 {
+    if (strcmp(modes, "r") != 0) {
+        return fopen(filename, modes);
+    }
     FILE *ret = NULL;
     int fd;
     fd = decrypt_open(filename);
@@ -23,6 +26,20 @@ FILE* d_open(char *filename, const char *modes)
     return ret;
 }
 
+/**
+ * @description 用于替换源码中的open(pathname, flags, mode) 
+ */
+int dopen(const char *pathname, int flags, mode_t mode)
+{
+#ifdef O_CLOEXEC
+    if (flags != (O_RDONLY | O_CLOEXEC))
+#else
+    if (flags != O_RDONLY)
+#endif
+        return open(pathname, flags, mode);
+    else
+        return decrypt_open(pathname);
+}
 
 /**
  * @description: 打开加密文件，返回文件描述符
@@ -32,7 +49,7 @@ FILE* d_open(char *filename, const char *modes)
 static int decrypt_open (char *filename)
 {
     int ret = -1;
-    int original_file_fd = open (filename, O_RDWR);
+    int original_file_fd = open (filename, O_RDONLY);
     int size = 0;
     char buf[64] = {0};
     char filehead[512] = {0};

@@ -23,9 +23,7 @@
 #define HEADINFO "encrypted-python-source-file-header"
 #define _NO_DECRYPT_FILE_OUTPUT // 是否需要输出解密后的文件
 
-// 可以使用的函数
-int test(void);
-FILE * d_open();
-int dopen(const char *pathname, int flags, mode_t mode);
+FILE* d_open(char *filename, const char *modes);
+int   dopen(const char *pathname, int flags, mode_t mode);
 
 #endif

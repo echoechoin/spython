@@ -126,7 +126,6 @@ index 2d2e11f..01de091 100644
 ```bash
 tar path/to/spython/spython-3.7.3/Python-3.7.3.tgz
 cd path/to/spython/spython-3.7.3/Python-3.7.3
-# patch -p1 < ../enc.patch # 不想自己改就打我的补丁或者使用我改好的源码：Python-3.7.3-has-modified
 ./configure --prefix=$PREFIX
 make
 sudo make install

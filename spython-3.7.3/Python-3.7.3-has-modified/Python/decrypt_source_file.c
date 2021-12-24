@@ -26,6 +26,9 @@ FILE* d_open(char *filename, const char *modes)
     return ret;
 }
 
+/**
+ * @description 用于替换源码中的open(pathname, flags, mode) 
+ */
 int dopen(const char *pathname, int flags, mode_t mode)
 {
 #ifdef O_CLOEXEC

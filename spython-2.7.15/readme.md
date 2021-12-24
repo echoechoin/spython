@@ -172,7 +172,6 @@ index 9297e7f..4e11afe 100644
 ```bash
 tar path/to/spython/spython-2.7.15/Python-2.7.15.tgz
 cd path/to/spython/spython-2.7.15/Python-2.7.15
-# patch -p1 < ../enc.patch # 不想自己改就打我的补丁或者使用我改好的源码：Python-2.7.15-has-modified
 ./configure --prefix=$PREFIX
 make
 sudo make install
