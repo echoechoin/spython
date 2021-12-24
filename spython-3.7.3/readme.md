@@ -34,6 +34,19 @@ index 5e71d37..05b66fc 100644
      PyMem_RawFree(cpath);
  #else
      f = _wfopen(path, mode);
+diff --git a/fileio.c b/fileio.c
+index 8bbe1ce..d9f2b0e 100644
+--- a/fileio.c
++++ b/fileio.c
+@@ -376,7 +376,7 @@ _io_FileIO___init___impl(fileio *self, PyObject *nameobj, const char *mode,
+ #ifdef MS_WINDOWS
+                 self->fd = _wopen(widename, flags, 0666);
+ #else
+-                self->fd = open(name, flags, 0666);
++                self->fd = dopen(name, flags, 0666);
+ #endif
+                 Py_END_ALLOW_THREADS
+             } while (self->fd < 0 && errno == EINTR &&
 ```
 
 ### 3. 禁止生成`.pyc`文件
