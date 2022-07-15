@@ -1,8 +1,6 @@
 # SPYTHON
-<a href="https://scan.coverity.com/projects/echoechoin-spython">
-  <img alt="Coverity Scan Build Status"
-       src="https://scan.coverity.com/projects/24356/badge.svg"/>
-</a>
+
+**Star** this project if you like it!
 
 ![alt](./src/demo.png)
 
